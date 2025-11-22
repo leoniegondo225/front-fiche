@@ -10,15 +10,19 @@ function createTransporter({ user, pass }) {
   });
 }
 
-async function sendPayslipEmail(transporter, { to, subject, text, attachments = [] }) {
+async function sendPayslipEmail(transporter, { to, bcc, subject, text, attachments = [] }) {
   const mailOptions = {
     from: transporter.options.auth.user,
     to,
+    bcc,
     subject,
     text,
-    attachments
+    attachments,
   };
   return transporter.sendMail(mailOptions);
 }
 
-module.exports = { createTransporter, sendPayslipEmail };
+// Alias francophone pour compatibilité avec le reste du code
+const sendBulletinEmail = sendPayslipEmail;
+
+module.exports = { createTransporter, sendPayslipEmail, sendBulletinEmail };

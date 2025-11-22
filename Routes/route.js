@@ -17,7 +17,7 @@ const upload = multer({ dest: "uploads/" });
 router.post("/login", login);
 // Route pour l'upload de fichiers
 router.post("/upload", upload.single("file"), traiterPDF);
-router.post("/send", authMiddleware, envoyerFiches)
+router.post("/sendOne", envoyerFiches)
 
 // Export du router pour pouvoir l'utiliser dans app.js
 module.exports = router;
